@@ -22,10 +22,7 @@ COPY tools/site/ ./
 # Build your project (if needed)
 RUN gulp build --codelabs-dir=codelabs
 
-# Move only the files from the build directory to the root directory
-RUN find build -maxdepth 1 -type f -exec mv -t . {} + && \
-    rm -rf build
-
+RUN rm -rf app tasks codelabs node_modules package*.json gulpfile.js && mv build/* .
 # Expose the port your app runs on
 EXPOSE 8000
 
